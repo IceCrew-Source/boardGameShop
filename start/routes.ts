@@ -19,7 +19,15 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import User from 'App/Models/User'
 
 Route.get('/', async ({ view }) => {
   return view.render('welcome')
+})
+
+Route.get('/login', 'AuthController.showLoginForm')
+Route.post('/login', 'AuthController.login').as('login')
+Route.post('/register', 'AuthController.register').as('register')
+Route.get('/test', async () => {
+  return User.all()
 })
